@@ -73,4 +73,3 @@ resources:
       connection: !ref benchmarkHttpConnection
       read:
         path: /probe/01
-        method: GET

@@ -363,16 +363,22 @@ def build_parser():
     )
     parser.add_argument("--request-timeout", type=float, default=10.0)
     parser.add_argument(
-        "--wib",
+        "--pause-http-ms",
         type=int,
         default=0,
-        help="Wait in between reads in milliseconds (default: 0).",
+        help="Pause between HTTP probe requests in milliseconds (default: 0).",
+    )
+    parser.add_argument(
+        "--wib",
+        type=int,
+        default=None,
+        help=argparse.SUPPRESS,
     )
     parser.add_argument(
         "--pause-ms",
         type=int,
         default=None,
-        help="Deprecated alias for --wib.",
+        help=argparse.SUPPRESS,
     )
     parser.add_argument("--qos", type=int, default=0)
     parser.add_argument("--csv", default="")
@@ -497,7 +503,13 @@ def connect_mqtt_client(args, res_topic):
 
 def main():
     args = build_parser().parse_args()
-    wait_in_between_ms = args.wib if args.pause_ms is None else args.pause_ms
+    wait_in_between_ms = args.pause_http_ms
+    if args.wib is not None:
+        wait_in_between_ms = args.wib
+        print("warning: --wib is deprecated; use --pause-http-ms", file=sys.stderr)
+    if args.pause_ms is not None:
+        wait_in_between_ms = args.pause_ms
+        print("warning: --pause-ms is deprecated; use --pause-http-ms", file=sys.stderr)
 
     if args.deploy_only and not args.service_id:
         print("--deploy-only requires --service-id", file=sys.stderr)
