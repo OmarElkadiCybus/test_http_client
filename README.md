@@ -17,7 +17,6 @@ Main test script:
 - `scripts/rtt_read_test.py`
 - Supports single-phase reads and reconnect-phase reads.
 - Supports wait between reads (`--pause-http-ms` in ms).
-- Can optionally deploy SCF via Connectware API (`--deploy-only`).
 - Saves run artifacts to `logs/run_<timestamp>_<topic>/`.
 
 ## 2. Tests done and test results
@@ -84,21 +83,7 @@ python3 scripts/rtt_read_test.py --topic-root tight/probe/01 --reads 5 --reads-a
 python3 scripts/rtt_read_test.py --topic-root agentoptions/probe/01 --reads 5 --reads-after-reconnect 5 --pause-http-ms 1000 --mqtt-username admin --mqtt-password admin
 ```
 
-6. Optional: deploy an SCF through API and exit (no RTT reads):
-
-```bash
-python3 scripts/rtt_read_test.py \
-  --topic-root baseline/probe/01 \
-  --service-id httprttbenchmarkbaseline \
-  --api-base-url https://localhost \
-  --api-key-file /home/omar/Cybus/sick/test_http_client/login_resp.json \
-  --api-insecure \
-  --commissioning-file commissioning/http-bench-baseline.cw.yml \
-  --deploy-only
-```
-
 Output files per run:
 
 - `rtt.csv`
 - `metadata.json`
-- `api_update.json` (only when API deploy is used)

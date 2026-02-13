@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
 import argparse
-import base64
 import csv
 import json
-import ssl
 import sys
 import threading
 import time
-import urllib.error
-import urllib.parse
-import urllib.request
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -122,47 +117,6 @@ def resolve_mqtt_credentials(args):
     return username, password, f"file:{args.mqtt_auth_file}"
 
 
-def load_api_key(api_key: str, api_key_file: str) -> str:
-    if api_key:
-        return api_key.strip()
-
-    if not api_key_file:
-        return ""
-
-    content = Path(api_key_file).read_text(encoding="utf-8").strip()
-    if not content:
-        return ""
-
-    if content.startswith("{"):
-        try:
-            parsed = json.loads(content)
-            if isinstance(parsed, dict):
-                for candidate in ("token", "apiKey", "accessToken"):
-                    value = parsed.get(candidate)
-                    if isinstance(value, str) and value.strip():
-                        return value.strip()
-        except json.JSONDecodeError:
-            pass
-
-    return content
-
-
-def auth_header_candidates(api_key: str):
-    key = api_key.strip()
-    if not key:
-        return []
-    if key.lower().startswith("bearer "):
-        return [key]
-    return [key, f"Bearer {key}"]
-
-
-def is_non_printable_yaml_error(status_code: int, response_body: str) -> bool:
-    if status_code != 406:
-        return False
-    body = (response_body or "").lower()
-    return "non-printable characters" in body and "commissioning file" in body
-
-
 class ResponseStore:
     def __init__(self):
         self._cv = threading.Condition()
@@ -189,153 +143,6 @@ class ResponseStore:
                 if remaining <= 0:
                     return None
                 self._cv.wait(remaining)
-
-
-def build_update_url(api_base_url: str, api_version: str, service_id: str) -> str:
-    base = api_base_url.rstrip("/")
-    sid = urllib.parse.quote(service_id, safe="")
-
-    if api_version == "v2":
-        if base.endswith("/api/v2"):
-            return f"{base}/services/{sid}"
-        if base.endswith("/api"):
-            return f"{base}/v2/services/{sid}"
-        return f"{base}/api/v2/services/{sid}"
-
-    if base.endswith("/api"):
-        return f"{base}/services/{sid}"
-    return f"{base}/api/services/{sid}"
-
-
-def http_put_json(
-    url: str,
-    authorization: str,
-    payload: dict,
-    timeout_s: float,
-    insecure_tls: bool = False,
-    ca_file: str = "",
-):
-    raw = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(url=url, data=raw, method="PUT")
-    request.add_header("Content-Type", "application/json")
-    request.add_header("Accept", "application/json")
-    request.add_header("Authorization", authorization)
-
-    context = None
-    if url.lower().startswith("https://"):
-        if insecure_tls:
-            context = ssl._create_unverified_context()
-        elif ca_file:
-            context = ssl.create_default_context(cafile=ca_file)
-
-    try:
-        with urllib.request.urlopen(request, timeout=timeout_s, context=context) as response:
-            body = response.read().decode("utf-8", "replace")
-            return response.getcode(), body
-    except urllib.error.HTTPError as exc:
-        body = exc.read().decode("utf-8", "replace")
-        return exc.code, body
-    except urllib.error.URLError as exc:
-        return 0, str(exc)
-
-
-def deploy_service_from_file(args, run_dir: Path):
-    if not args.service_id:
-        return None
-
-    api_key = load_api_key(args.api_key, args.api_key_file)
-    if not args.api_base_url or not api_key:
-        raise RuntimeError("--service-id requires --api-base-url and either --api-key or --api-key-file")
-
-    commissioning_path = Path(args.commissioning_file)
-    if not commissioning_path.exists():
-        raise RuntimeError(f"commissioning file not found: {commissioning_path}")
-
-    commissioning_text = commissioning_path.read_text(encoding="utf-8")
-    update_url = build_update_url(args.api_base_url, args.api_version, args.service_id)
-
-    encoding_modes = [True] if args.commissioning_file_base64 else [False, True]
-
-    status_code = 0
-    response_body = ""
-    used_auth_mode = "none"
-    used_base64_mode = False
-    payload = {}
-    attempts = []
-
-    for use_base64 in encoding_modes:
-        commissioning_file_value = (
-            base64.b64encode(commissioning_text.encode("utf-8")).decode("ascii")
-            if use_base64
-            else commissioning_text
-        )
-
-        payload = {
-            "commissioningFile": commissioning_file_value,
-            "parameters": {},
-        }
-
-        for auth_candidate in auth_header_candidates(api_key):
-            used_auth_mode = "bearer" if auth_candidate.lower().startswith("bearer ") else "raw"
-            status_code, response_body = http_put_json(
-                update_url,
-                auth_candidate,
-                payload,
-                args.api_timeout,
-                insecure_tls=args.api_insecure,
-                ca_file=args.api_ca_file,
-            )
-            attempts.append(
-                {
-                    "usedAuthHeaderMode": used_auth_mode,
-                    "usedBase64CommissioningFile": use_base64,
-                    "statusCode": status_code,
-                    "responseBody": response_body,
-                }
-            )
-
-            if status_code == 401:
-                continue
-
-            used_base64_mode = use_base64
-            break
-
-        if 200 <= status_code < 300:
-            used_base64_mode = use_base64
-            break
-
-        if use_base64 is False and is_non_printable_yaml_error(status_code, response_body):
-            continue
-
-        if status_code != 401:
-            break
-
-    update_info = {
-        "url": update_url,
-        "statusCode": status_code,
-        "apiVersion": args.api_version,
-        "serviceId": args.service_id,
-        "commissioningFilePath": str(commissioning_path),
-        "apiKeySource": "arg" if args.api_key else "file",
-        "apiKeyFile": args.api_key_file or None,
-        "usedAuthHeaderMode": used_auth_mode,
-        "apiInsecure": args.api_insecure,
-        "apiCaFile": args.api_ca_file or None,
-        "usedBase64CommissioningFile": used_base64_mode,
-        "responseBody": response_body,
-        "attempts": attempts,
-    }
-
-    with (run_dir / "api_update.json").open("w", encoding="utf-8") as handle:
-        json.dump(update_info, handle, indent=2)
-
-    if status_code < 200 or status_code >= 300:
-        raise RuntimeError(f"Service update failed status={status_code} url={update_url} body={response_body}")
-
-    if args.post_update_wait_ms > 0:
-        time.sleep(args.post_update_wait_ms / 1000)
-
-    return update_info
 
 
 def build_parser():
@@ -387,23 +194,6 @@ def build_parser():
         action="store_true",
         help="Send query params with each req (no HTTP body), useful for server-side echo debugging.",
     )
-
-    parser.add_argument("--service-id", default="")
-    parser.add_argument("--api-base-url", default="")
-    parser.add_argument("--api-key", default="")
-    parser.add_argument("--api-key-file", default="")
-    parser.add_argument("--api-version", choices=["v2", "v1"], default="v2")
-    parser.add_argument("--api-timeout", type=float, default=30.0)
-    parser.add_argument("--api-insecure", action="store_true")
-    parser.add_argument("--api-ca-file", default="")
-    parser.add_argument(
-        "--commissioning-file",
-        default="commissioning/http-bench-baseline.cw.yml",
-        help="Static commissioning file used for API deploy (no templating).",
-    )
-    parser.add_argument("--commissioning-file-base64", action="store_true")
-    parser.add_argument("--post-update-wait-ms", type=int, default=1000)
-    parser.add_argument("--deploy-only", action="store_true")
 
     return parser
 
@@ -511,18 +301,9 @@ def main():
         wait_in_between_ms = args.pause_ms
         print("warning: --pause-ms is deprecated; use --pause-http-ms", file=sys.stderr)
 
-    if args.deploy_only and not args.service_id:
-        print("--deploy-only requires --service-id", file=sys.stderr)
-        return 2
     if args.reads_after_reconnect < 0:
         print("--reads-after-reconnect must be >= 0", file=sys.stderr)
         return 2
-
-    if args.deploy_only and (args.reads > 0 or args.reads_after_reconnect > 0):
-        print(
-            "note: --deploy-only skips RTT reads; phase reads are ignored and no rtt.csv is generated.",
-            file=sys.stderr,
-        )
 
     req_topic = f"{args.topic_root}/req"
     res_topic = f"{args.topic_root}/res"
@@ -530,38 +311,6 @@ def main():
     run_stamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
     run_dir = Path("logs") / f"run_{run_stamp}_{safe_topic}"
     run_dir.mkdir(parents=True, exist_ok=True)
-
-    update_info = None
-    try:
-        update_info = deploy_service_from_file(args, run_dir)
-    except RuntimeError as exc:
-        print(str(exc), file=sys.stderr)
-        return 3
-
-    if args.deploy_only:
-        if update_info:
-            print(f"deploy_status_code={update_info.get('statusCode')}")
-        metadata = {
-            "generatedAt": datetime.now(timezone.utc).isoformat(),
-            "benchmark": {
-                "topicRoot": args.topic_root,
-                "mode": "deploy-only",
-                "readsRequested": args.reads + args.reads_after_reconnect,
-                "readsExecuted": 0,
-            },
-            "serviceUpdateStatusCode": update_info.get("statusCode") if update_info else None,
-            "artifacts": {
-                "csvPath": None,
-                "apiUpdatePath": str(run_dir / "api_update.json") if update_info else None,
-            },
-        }
-        with (run_dir / "metadata.json").open("w", encoding="utf-8") as handle:
-            json.dump(metadata, handle, indent=2)
-        print("deploy_only=true no_rtt_csv_generated=true")
-        print(f"deployed_service_id={args.service_id}")
-        print(f"saved_run_dir={run_dir}")
-        print(f"saved_metadata={run_dir / 'metadata.json'}")
-        return 0
 
     results = []
     phase_specs = [("phase1", args.reads)]
@@ -699,10 +448,8 @@ def main():
             "receive": summarize_rtts(receive_rtts),
         },
         "phaseRttMs": phase_stats,
-        "serviceUpdateStatusCode": update_info.get("statusCode") if update_info else None,
         "artifacts": {
             "csvPath": str(output),
-            "apiUpdatePath": str(run_dir / "api_update.json") if update_info else None,
         },
     }
 
