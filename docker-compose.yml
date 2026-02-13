@@ -1,0 +1,17 @@
+services:
+  http-echo:
+    image: mendhak/http-https-echo:38
+    container_name: cybus-http-echo
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    environment:
+      DISABLE_REQUEST_LOGS: "true"
+      LOG_WITHOUT_NEWLINE: "true"
+    networks:
+      - connectware_cybus
+
+networks:
+  connectware_cybus:
+    external: true

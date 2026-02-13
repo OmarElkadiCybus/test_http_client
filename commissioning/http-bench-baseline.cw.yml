@@ -1,0 +1,50 @@
+description: >
+  HTTP round-trip benchmark profile for Cybus Connectware.
+  Baseline profile with GET/read endpoint for RTT tests.
+
+metadata:
+  name: HTTP RTT Benchmark - Baseline
+  version: 1.2.0
+  provider: cybus
+  homepage: https://docs.cybus.io/documentation/industry-protocol-details/http-rest
+
+parameters:
+  targetHost:
+    type: string
+    description: Hostname of the echo server reachable by Connectware.
+    default: 'cybus-http-echo'
+  targetPort:
+    type: integer
+    description: Port of the echo server reachable by Connectware.
+    default: 8443
+  targetScheme:
+    type: string
+    description: Scheme for the echo server reachable by Connectware.
+    default: 'https'
+
+definitions:
+  CYBUS_MQTT_ROOT: baseline
+
+resources:
+  benchmarkHttpConnection:
+    type: Cybus::Connection
+    properties:
+      protocol: Http
+      connection:
+        host: !ref targetHost
+        scheme: !ref targetScheme
+        port: !ref targetPort
+        trustAllCertificates: true
+        probePath: /
+        probeMethod: GET
+        probeTimeout: 3000
+        probeInterval: 2000
+
+  probe01:
+    type: Cybus::Endpoint
+    properties:
+      topic: probe/01
+      protocol: Http
+      connection: !ref benchmarkHttpConnection
+      read:
+        path: /probe/01

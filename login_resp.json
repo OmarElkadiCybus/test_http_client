@@ -1,0 +1,1008 @@
+{
+	"token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNmRjMDI5Mi0wOGIzLTExZjEtODU4NC1hZWUyYzI5ZWE5NTgiLCJpc3MiOiJjeWJ1cyIsImlhdCI6MTc3MTAwODAyMSwiZXhwIjoxNzcxMDExNjIxfQ.h40SJu6551WeWToorbx6lweOCfgaEfqxdSg-lZFMlWmHwg7PJfMea2KnWD8Z1SbQeBnYh7i8MwjSOdaBafJw7nSQ7CVAtk35mNvQ1dAXOlax__LV--E5MmjbClHM37WiuX1XMlnFd20yVL0-ZzVgtVAz2cmWJwTC6nUnKvDo4jem1D5PJcjBWThvLNkDBty7HdRgdK6mNcfOuqNciuQttAqRNc6jyegZ5-_u5wVyBuNRW46vI7GgX2CUX6R-snQp-VtsanCvMvhLXcUm2Bu8qm28VzUETOL1iCAPgdtEjP355WLUqSBfIPtkGaZXVQUmMSm-mgsckZGaVYlY9guXfw",
+	"expiresAt": "2026-02-13T19:40:21.421Z",
+	"permissions": [
+		{
+			"id": "26c74708-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "#",
+			"operation": "readWrite",
+			"context": "mqtt"
+		},
+		{
+			"id": "26c7545a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/services/#",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c756e4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/users",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c75914-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/users/#",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c75b26-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/client-registry",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c75ce8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/client-registry/+",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c75f40-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/roles/#",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c760da-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/roles",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c76292-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c7640e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services/status",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c76580-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services/+",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c767ce-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26c76954-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services/+/status",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c76b5c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/containers",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c76cce-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/containers/+/inspect",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c76e40-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/containers/+/logs",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c76fb2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/containers/+/state",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c77142-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/volumes",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c772b4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/volumes/+/inspect",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c7741c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/networks",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c77584-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/networks/+/inspect",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c776ec-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/images",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c7785e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/images/+/inspect",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c77a0c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/devices",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c77b60-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/devices/status",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c77cbe-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/devices/+",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c77e12-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/info",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c77f66-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/logs/intern/hosts",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c780ec-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/logs/container/hosts",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c78240-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/logs/intern",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c783a8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/logs/container",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c784fc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/workbench",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c78646-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/workbench/#",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26c787ea-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/preflight",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c7893e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mappings",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c78a9c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mappings/schema",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c78be6-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mappings/+",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c78d76-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mappings/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26c78f2e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/connections",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c7908c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/connections/schema",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c791d6-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/connections/+",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c79320-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/connections/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26c7946a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/endpoints",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c795d2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/endpoints/schema",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c7971c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/endpoints/+",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26c798b6-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/endpoints/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26e1c02e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/licensefile",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26e3764e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/refresh",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e461da-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/health",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e5428a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/marketplace/apps",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e55112-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/marketplace/app",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e6022e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/topics",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e83ec2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/permissions",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e8f9fc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mappings/+/state",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e8ff7e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/endpoints/+/state",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26e9056e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/nodes/+/state",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26ebb00c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/certificates",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26ebbfb6-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/certificates/+",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26e996c8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/metrics",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26ecc30c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/rule-engine/+",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26ee2aee-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/policy/password",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f0f9ae-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/maintenance/db",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f10340-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/maintenance/db/+",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26f18022-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/data/#",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26f18748-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/data",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26f20fc4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/listUsers/#",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26f215dc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/listUsers",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26f2a862-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services/+/dependencies",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f3b1b2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/endpoints/+/topics",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f43cae-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mappings/+/endpoint-topics",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f4c16a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/containers/orchestrator",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f54072-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/core-containers",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f54446-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/core-containers/+/inspect",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f546b2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/core-containers/+/logs",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f548e2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/core-containers/+/state",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f54e82-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/core-containers/orchestrator",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f5da64-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/servers",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f5dfb4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/servers/schema",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f5e446-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/servers/+",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f5e89c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/servers/+/state",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f5eed2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/servers/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26f69684-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/core-containers/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26f69e40-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/containers/+/operation",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26f736fc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/nodes",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f7bf46-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/system/agents",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f83f70-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/marketplace/app/meta",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26f8bf18-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/permissions/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26fc405c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/auth/ldap",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "26fd72b0-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mfa/enable",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26fd79c2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mfa/validate",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26fd7fbc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mfa/login",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26fd843a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mfa/regenerate/backupcodes",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26fd8872-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mfa/disable",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26fd8dc2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/mfa/isenrolled",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26feb1ac-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/users/change-password",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "26ff39c4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/validate/service",
+			"operation": "readWrite",
+			"context": "http"
+		},
+		{
+			"id": "26ffb8c2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/resources/schemas",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "2700d252-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/auth/mfa",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "27025258-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/resources/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "2702d8a4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/resource-runners/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "27054706-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.CREATE.KV_resourceDefinitions.*.$KV.resourceDefinitions.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "2705495e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.CREATE.KV_resourceRunnerHeartbeats.*.$KV.resourceRunnerHeartbeats.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270549b8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.CREATE.KV_resourceStates.*.$KV.resourceStates.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270549fe-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.DELETE.KV_resourceDefinitions.*",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054a3a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.DELETE.KV_resourceRunnerHeartbeats.*",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054a80-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.DELETE.KV_resourceStates.*",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054abc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.DIRECT.GET.KV_resourceDefinitions.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054af8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.DIRECT.GET.KV_resourceRunnerHeartbeats.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054b34-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.DIRECT.GET.KV_resourceStates.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054b70-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.CREATE.KV_resourceDefinitions",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054bac-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.CREATE.KV_resourceRunnerHeartbeats",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054be8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.CREATE.KV_resourceStates",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054c24-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.DELETE.KV_resourceDefinitions",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054cce-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.DELETE.KV_resourceRunnerHeartbeats",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054d0a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.DELETE.KV_resourceStates",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054d46-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.INFO.KV_resourceDefinitions",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054d82-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.INFO.KV_resourceRunnerHeartbeats",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054dbe-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.INFO.KV_resourceStates",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054dfa-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.UPDATE.KV_resourceDefinitions",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27054e36-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.UPDATE.KV_resourceRunnerHeartbeats",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055048-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.UPDATE.KV_resourceStates",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "2705508e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.PURGE.KV_resourceStates",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270550ca-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.PURGE.KV_resourceRunnerHeartbeats",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055106-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.PURGE.KV_resourceDefinitions",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055142-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.FC.KV_resourceDefinitions.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055188-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.FC.KV_resourceRunnerHeartbeats.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270551c4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.FC.KV_resourceStates.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055200-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$KV.resourceDefinitions.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055232-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$KV.resourceRunnerHeartbeats.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27055278-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$KV.resourceStates.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270552aa-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.INFO",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270552e6-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "_INBOX.>",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "2705f05c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/resources/runners/+",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "27085a54-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/services/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "270860ee-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/services/#",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "27090c42-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.CREATE.servicesCRUD",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090d3c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.CREATE.servicesCRUD.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090d8c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.CREATE.servicesCRUD",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090dd2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.INFO.servicesCRUD.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090e0e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.MSG.NEXT.servicesCRUD.*",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090e4a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.CREATE.KV_resourceDefinitions",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090e90-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.INFO.KV_resourceDefinitions.*",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090ecc-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.CONSUMER.MSG.NEXT.KV_resourceDefinitions.*",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090f08-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.ACK.servicesCRUD.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090f4e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.PURGE.servicesCRUD",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090f8a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.ACK.KV_resourceDefinitions.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "27090fc6-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "servicesCRUD.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "270ff976-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/topics/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "270ffc3c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/topics/#",
+			"operation": "write",
+			"context": "http"
+		},
+		{
+			"id": "27169f24-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/service-graph/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "271703ec-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/v2/mqtt/topics/#",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "2717f7e8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/services/+/deletion-status",
+			"operation": "read",
+			"context": "http"
+		},
+		{
+			"id": "2719479c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$SRV.PING",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "27194800-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$SRV.PING.>",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "27194832-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$SRV.STATS",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "2719485a-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$SRV.STATS.>",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "27194882-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$SRV.INFO",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "271948a0-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$SRV.INFO.>",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "271948c8-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "inspect.*.metrics",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "271948f0-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "inspect.*.setLogLevel",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "2719490e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "inspect.*.republishStates",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "27194936-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "inspect.*.restartConsumer",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "2719495e-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "inspect.*.activeServicesCRUDConsumer",
+			"operation": "read",
+			"context": "control_plane"
+		},
+		{
+			"id": "2719497c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.INFO.servicesCRUD",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "271949a4-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "$JS.API.STREAM.MSG.GET.KV_resourceRunnerHeartbeats",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "271949c2-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "_INBOX.>",
+			"operation": "write",
+			"context": "control_plane"
+		},
+		{
+			"id": "2719af0c-08b3-11f1-b40c-aee2c29ea958",
+			"resource": "/api/policy/username",
+			"operation": "read",
+			"context": "http"
+		}
+	]
+}
